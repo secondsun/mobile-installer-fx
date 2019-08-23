@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Tab?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.aerogear.installer.controller.MainController">
+    <BorderPane>
+
+        <top>
+            <VBox spacing="20">
+                <JFXToolbar>
+                    <leftItems>
+                        <Label fx:id="fragmentTitle" >AeroGear Installer</Label>
+                    </leftItems>
+                </JFXToolbar>
+            </VBox>
+        </top>
+
+        <!-- Content Area -->
+        <center>
+            <StackPane fx:id="root">
+                <JFXTabPane fx:id="tabPane">
+                    <tabs>
+                        <Tab text="Services">
+                            <fx:include fx:id="services"  source="Services.fxml"/>
+                        </Tab>
+                        <Tab text="Settings">
+                            <fx:include fx:id="settings" source="Settings.fxml"/>
+                        </Tab>
+                    </tabs>
+                </JFXTabPane>
+            </StackPane>
+        </center>
+    </BorderPane>
+
+</StackPane>

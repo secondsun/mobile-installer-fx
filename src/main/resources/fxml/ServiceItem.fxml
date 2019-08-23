@@ -1,0 +1,8 @@
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml">
+
+    <JFXTextField fx:id="serviceName"></JFXTextField>
+    <JFXToggleButton fx:id="enabled" disable="true"></JFXToggleButton>
+
+</fx:root>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import com.jfoenix.controls.JFXButton?>
+<VBox xmlns="http://javafx.com/javafx"
+      fx:controller="org.aerogear.installer.controller.SettingsController"
+      xmlns:fx="http://javafx.com/fxml">
+    <HBox>
+    <Label text="url"/>
+    <JFXTextField fx:id="url" />
+    </HBox>
+    <HBox>
+        <Label text="username"/>
+        <JFXTextField fx:id="userName" />
+    </HBox>
+    <HBox>
+        <Label text="password"/>
+        <JFXTextField fx:id="password" />
+    </HBox>
+    <JFXButton fx:id="submit" onAction="#configureOpenShift" text="Submit"/>
+</VBox>
