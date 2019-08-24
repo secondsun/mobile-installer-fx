@@ -2,11 +2,13 @@ package org.aerogear.installer;
 
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.aerogear.installer.task.ConnectToOpenShiftService;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,8 +24,12 @@ public final class Main extends Application{
 
     private Stage window;
 
+    public static final ConnectToOpenShiftService OPENSHIFT_SERVICE = new ConnectToOpenShiftService();
+
     @Override
     public void start(Stage stage) throws Exception {
+        OPENSHIFT_SERVICE.start();
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
 
         this.window = stage;
@@ -40,6 +46,7 @@ public final class Main extends Application{
         window.show();
 
         window.setOnCloseRequest(exit -> {
+            Platform.exit();
             System.exit(0);
         });
 

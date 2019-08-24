@@ -3,10 +3,11 @@ package org.aerogear.installer.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.aerogear.installer.Main;
 import org.aerogear.installer.control.ServiceItem;
 import org.aerogear.installer.event.OpenShiftEnabledListener;
 
-public class ServicesController implements OpenShiftEnabledListener {
+public class ServicesController {
 
     @FXML
     private VBox servicesRoot;
@@ -16,6 +17,9 @@ public class ServicesController implements OpenShiftEnabledListener {
 
     @FXML
     public void initialize() {
+
+        var connectToOpenShift = Main.OPENSHIFT_SERVICE;
+
         this.keyCloakItem = new ServiceItem();
         this.keyCloakItem.setServiceName("KeyCloak");
 
@@ -26,15 +30,4 @@ public class ServicesController implements OpenShiftEnabledListener {
         servicesRoot.getChildren().add(enmasseItem);
     }
 
-    @Override
-    public void onOpenShiftEnabled() {
-        keyCloakItem.enable();
-        enmasseItem.enable();
-    }
-
-    @Override
-    public void onOpenShiftDisabled() {
-        keyCloakItem.disable();
-        enmasseItem.disable();
-    }
 }

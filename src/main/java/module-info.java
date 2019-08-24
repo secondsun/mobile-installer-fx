@@ -12,5 +12,6 @@ module AeroGearInstaller {
     requires javafx.fxml;
     requires javafx.graphics;
     requires openshift.restclient.java;
+    requires java.logging;
 
 }

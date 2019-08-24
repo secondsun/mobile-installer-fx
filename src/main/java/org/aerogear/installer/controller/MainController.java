@@ -28,8 +28,6 @@ public class MainController {
         //initialize settings
         //initialize services
 
-        settingsController.setOpenShiftEnableListener(servicesController);
-
     }
 
     private void initializeTabBar() {
@@ -38,4 +36,6 @@ public class MainController {
         selectionModel.select(0);
 
     }
+
+
 }

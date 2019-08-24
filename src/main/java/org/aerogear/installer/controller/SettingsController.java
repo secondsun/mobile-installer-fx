@@ -1,13 +1,10 @@
 package org.aerogear.installer.controller;
 
 import com.jfoenix.controls.JFXTextField;
-import com.openshift.restclient.ClientBuilder;
-import com.openshift.restclient.IClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import org.aerogear.installer.event.OpenShiftEnabledListener;
-
-import java.util.Optional;
+import org.aerogear.installer.Main;
+import org.aerogear.installer.task.ConnectToOpenShiftService;
 
 public class SettingsController {
     @FXML
@@ -19,45 +16,20 @@ public class SettingsController {
     @FXML
     private JFXTextField password;
 
-    private IClient client;
-    private Optional<OpenShiftEnabledListener> listener = Optional.empty();
+    private final ConnectToOpenShiftService service = Main.OPENSHIFT_SERVICE;
 
     @FXML
     public void initialize() {
-        try {
-        this.client = new ClientBuilder("https://192.168.42.31:8443")
-                .withUserName("developer")
-                .withPassword("developer")
-                .build();
-            listener.ifPresent((listener)->{listener.onOpenShiftEnabled();});
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            listener.ifPresent((listener)->{listener.onOpenShiftDisabled();});
-        }
+        url.setText(Main.OPENSHIFT_SERVICE.getUrl());
+        userName.setText(Main.OPENSHIFT_SERVICE.getUsername());
+        password.setText(Main.OPENSHIFT_SERVICE.getPassword());
     }
 
     public void configureOpenShift(ActionEvent actionEvent) {
-        try {
-            this.client = new ClientBuilder(url.getText())
-                    .withUserName(userName.getText())
-                    .withPassword(password.getText())
-                    .build();
-            listener.ifPresent((listener)->{listener.onOpenShiftEnabled();});
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            listener.ifPresent((listener)->{listener.onOpenShiftDisabled();});
-        }
-    }
-
-    public void setOpenShiftEnableListener(OpenShiftEnabledListener possibleListener) {
-        this.listener = Optional.ofNullable(possibleListener);
-        this.listener.ifPresent((listener)-> {
-            if (this.client != null) {
-                listener.onOpenShiftEnabled();
-            } else {
-                listener.onOpenShiftDisabled();
-            }
-        });
+        service.setUrl(url.getText());
+        service.setUsername(userName.getText());
+        service.setPassword(password.getText());
+        service.restart();
     }
 
 }
