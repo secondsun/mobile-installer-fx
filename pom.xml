@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.aerogear.installer</groupId>
     <artifactId>mobile-installer-fx</artifactId>
@@ -66,19 +67,46 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.3</version>
+                <configuration>
+                    <mainClass>org.aerogear.installer.Main</mainClass>
+                    <options>
+                    <option>--add-exports</option>
+                    <option>javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</option>
+                    <option>--add-exports</option>
+                    <option>javafx.controls/com.sun.javafx.scene.control=com.jfoenix</option>
+                    <option>--add-exports</option>
+                    <option>javafx.base/com.sun.javafx.binding=com.jfoenix</option>
+                    <option>--add-exports</option>
+                    <option>javafx.graphics/com.sun.javafx.stage=com.jfoenix</option>
+                    <option>--add-exports</option>
+                    <option>javafx.base/com.sun.javafx.event=com.jfoenix</option>
+                    </options>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
 
                 <configuration>
                     <executable>java</executable>
-                    <mainClass>org.aerogear.installer.Main</mainClass>
                     <arguments>
-                        <argument>--add-exports javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</argument>
-                        <argument>--add-exports javafx.controls/com.sun.javafx.scene.control=com.jfoenix</argument>
-                        <argument>--add-exports javafx.base/com.sun.javafx.binding=com.jfoenix</argument>
-                        <argument>--add-exports javafx.graphics/com.sun.javafx.stage=com.jfoenix</argument>
-                        <argument>--add-exports javafx.base/com.sun.javafx.event=com.jfoenix</argument>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>--add-exports</argument>
+                        <argument>javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</argument>
+                        <argument>--add-exports</argument>
+                        <argument>javafx.controls/com.sun.javafx.scene.control=com.jfoenix</argument>
+                        <argument>--add-exports</argument>
+                        <argument>javafx.base/com.sun.javafx.binding=com.jfoenix</argument>
+                        <argument>--add-exports</argument>
+                        <argument>javafx.graphics/com.sun.javafx.stage=com.jfoenix</argument>
+                        <argument>--add-exports</argument>
+                        <argument>javafx.base/com.sun.javafx.event=com.jfoenix</argument>
+                        <argument>org.aerogear.installer.Main</argument>
                     </arguments>
                 </configuration>
             </plugin>
