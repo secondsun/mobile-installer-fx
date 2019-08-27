@@ -33,28 +33,17 @@ Installing Enmasse
    oc apply -f install/components/example-authservices/standard-authservice.yaml
   ```
 
-Installing Mobile Developer Console
+Installing Mobile Developer Console Operator
 ===================================
  * Download 
- 
+   https://github.com/aerogear/mobile-developer-console-operator/archive/0.2.3.zip
+ * Installation
+   ```
+   make cluster/prepare install-operator install-mdc
+   ```
 
- Notes to myself : ¡HEY YOU LOOK HERE!  You need to update the MDC docs/operators/scripts to use the i8ly KC operator instead of service bindings.
+Installing Enmasse
 
- Download
-    CRDs and friends are in github, source is for development, most things are in quay.
-    Only necessary for development, otherwise use resources in quay
- Create Namespace
-    mobile-developer-console
-    `oc new-project mobile-developer-console`
- CRDs
-    `oc create -f deploy/mobile-client-crd.yaml`
- Configure permissions
-    `oc create clusterrole mobileclient-admin --verb=create,delete,get,list,patch,update,watch --resource=mobileclients`
-    `oc adm policy add-cluster-role-to-group mobileclient-admin system:authenticated`
- Configure security
-    `oc create -f deploy/openshift-oauthclient.yaml`    
- Monitoring
- Operator
 
 Installing UPS
  * Enmasse
